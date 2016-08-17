@@ -38,8 +38,8 @@ gulp.task('default', ['images', 'html', 'scripts', 'styles'], function() {
 // CSS concat, auto-prefix and minify
 gulp.task('styles', function() {
   gulp.src([cssSrc])
-    .pipe(concat('style.css'))
-    .pipe(autoprefix('last 2 versions'))
+    // .pipe(concat('style.css'))
+    // .pipe(autoprefix('last 2 versions'))
     .pipe(minifyCSS())
     .pipe(gulp.dest(cssDst));
 });
