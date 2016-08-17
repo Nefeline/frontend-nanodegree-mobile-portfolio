@@ -1,5 +1,4 @@
 # Website Performance Optimization portfolio
-===============================
 
 ### Check out my Optimized Website: [click me!!](https://nefeline.github.io/frontend-nanodegree-mobile-portfolio/)
 
