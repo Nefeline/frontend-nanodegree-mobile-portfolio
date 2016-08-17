@@ -9,7 +9,7 @@
 * Optimizations made to views/js/main.js:
 	- (PS: To see the developer version of main.js go to 01_source/js/main.js);
 	- Efficiency improvements in the changePizzaSizes function (line 451);
-	- Frame rate improvements in updatePositions function (line 512).
+	- Frame rate improvements in updatePositions function (line 508).
 * Gulp:
 	- The minification of CSS, JS, html and image optimizations were made automatically with Gulp.
 	- Source file = 01_source
