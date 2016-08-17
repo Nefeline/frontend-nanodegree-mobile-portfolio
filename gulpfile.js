@@ -46,8 +46,8 @@ gulp.task('styles', function() {
 // JS concat, strip debugging and minify
 gulp.task('scripts', function() {
   gulp.src([jsSrc])
-    .pipe(concat('perfmatters.js'))
-    .pipe(stripDebug())
+    // .pipe(concat('perfmatters.js'))
+    // .pipe(stripDebug())
     .pipe(uglify())
     .pipe(gulp.dest(jsDst));
 });
