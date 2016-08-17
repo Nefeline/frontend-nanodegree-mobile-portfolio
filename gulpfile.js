@@ -1,10 +1,10 @@
 //Directories
-var cssSrc = './app/css/*.css';
-var cssDst = './dist/css/';
-var jsSrc = './app/js/*.js';
-var jsDst = './dist/js/';
-var htmlOrigin = './app/*.html';
-var htmlDest = './dist';
+var cssSrc = './01_source/css/*.css';
+var cssDst = './02_optimized/css/';
+var jsSrc = './01_source/js/*.js';
+var jsDst = './02_optimized/js/';
+var htmlOrigin = './01_source/*.html';
+var htmlDest = './02_optimized';
 
 //Plugins
 var gulp  = require('gulp');
@@ -63,8 +63,8 @@ gulp.task('html', function() {
 });
 // minimifica novas imagens
 gulp.task('images', function() {
-  var imgSrc = './app/img/**/*',
-      imgDst = './dist/img';
+  var imgSrc = './01_source/img/**/*',
+      imgDst = './02_optimized/img';
   gulp.src(imgSrc)
     .pipe(changed(imgDst))
     .pipe(imagemin())
