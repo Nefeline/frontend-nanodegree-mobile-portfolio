@@ -23,12 +23,10 @@ gulp.task('default', ['images', 'html', 'scripts', 'styles'], function() {
   gulp.watch(htmlOrigin, function() {
     gulp.run('html');
   });
-
   // watch for JS changes
   gulp.watch(jsSrc, function() {
     gulp.run('scripts');
   });
-
   // watch for CSS changes
   gulp.watch(cssSrc, function() {
     gulp.run('styles');
@@ -47,21 +45,20 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
   gulp.src([jsSrc])
     // .pipe(concat('perfmatters.js'))
-    // .pipe(stripDebug())
+    .pipe(stripDebug())
     .pipe(uglify())
     .pipe(gulp.dest(jsDst));
 });
-// minimifica paginas HTML novas ou modificadas
+// minify html
 gulp.task('html', function() {
   var htmlSrc = htmlOrigin,
       htmlDst = htmlDest;
-
   gulp.src(htmlSrc)
     .pipe(changed(htmlDst))
     .pipe(minifyHTML())
     .pipe(gulp.dest(htmlDst));
 });
-// minimifica novas imagens
+// minify images
 gulp.task('images', function() {
   var imgSrc = './01_source/img/**/*',
       imgDst = './02_optimized/img';
