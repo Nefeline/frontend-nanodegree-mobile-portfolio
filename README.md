@@ -10,10 +10,7 @@
 	- (PS: To see the developer version of main.js go to 01_source/js/main.js);
 	- Efficiency improvements in the changePizzaSizes function (line 451);
 	- Frame rate improvements in updatePositions function (line 508).
-<<<<<<< HEAD
-=======
 	- Function updated to dynamically calculate the number of pizzas needed to fill the screen using inner.height properties (line 539)
->>>>>>> 8070b7c68242bf226d25a09b2909cd7dff456d2b
 * Gulp:
 	- The minification of CSS, JS, html and image optimizations were made automatically with Gulp.
 	- Source file = 01_source
