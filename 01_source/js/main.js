@@ -449,17 +449,16 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    // Moved the getElements (pizzaContainers) into a variable outside of the loop so it doesn't need to be processed for each element.
+  	// Moved the getElements (pizzaContainers) into a variable outside of the loop so it doesn't need to be processed for each element.
     // Moved the calculation of the dx and newwidth variables outside the loop, as all the pizzas are the same size, thus do not needd
     // to calculate each iteration.
     // Changed querySelectorAll to getElementsByClassName as it is more efficient (has fewer elements to search).
-
     var pizzaContainers = document.getElementsByClassName("randomPizzaContainer");
     var i = 0;
-    var len = pizzaContainers.length;
-    var dx = determineDx(pizzaContainers[0], size);
-    var newwidth = pizzaContainers[0].offsetWidth + dx + 'px';
-    for ( ;  i < len; i++) {
+    var length = pizzaContainers.length;
+    var dx = determineDx(pizzaContainers[i], size);
+    var newwidth = pizzaContainers[i].offsetWidth + dx + 'px';
+    for(; i < length; i++) {
       pizzaContainers[i].style.width = newwidth;
     }
   }
@@ -505,19 +504,23 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+
 function updatePositions() {
   frame++;
-  window.performance.mark("mark_start_frame");
   // querySelectorAll updated to getElementsByClassName as it is more efficient (fewer elements to search).
   // phase and bodyTop (move calculation) variables out of the loop to prevent DOM query every time the loop is executed.
-  var items = document.getElementsByClassName('mover');
-  var phase;
+  // two loops created: one for the phase values calculations and other for the positions updates.
+  window.performance.mark("mark_start_frame");
+  var items = document.querySelectorAll('.mover');
+  var phase = [];
   var bodyTop = document.body.scrollTop / 1250;
-  for (var i = 0; i < items.length; i++) {
-    phase = Math.sin(bodyTop + i % 5);
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  var i = 0;
+  for (;i < 5; i++) {
+    phase.push(Math.sin(bodyTop + i) * 100);
   }
-
+  for (max = items.length; i < max; i++) {
+    items[i].style.left = items[i].basicLeft + phase[i%5] + 'px';
+  }
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
@@ -532,10 +535,13 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+// This function was updated to dynamically calculate the number of pizzas needed to fill the screen using inner.height properties
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var i = 0;
+  var intViewportHeight = window.innerHeight;
+  for (;i < intViewportHeight; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
